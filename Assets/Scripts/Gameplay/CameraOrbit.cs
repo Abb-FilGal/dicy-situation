@@ -3,14 +3,18 @@ using UnityEngine;
 public class CameraOrbit : MonoBehaviour
 {
     public Transform target; // The target object to orbit around
-    public float distance = 5.0f; // Initial distance from the target
+    public float distance = 18.0f; // Initial distance from the target
     public float minDistance = 8.0f; // Minimum zoom distance
     public float maxDistance = 18.0f; // Maximum zoom distance
     public float zoomSpeed = 8.0f; // Speed of zooming
     public float rotationSpeed = 600.0f; // Speed of rotation
+    public float deceleration = 5.0f; // Deceleration factor
 
     private float currentX = 0.0f; // Rotation around the X axis
     private float currentY = 0.0f; // Rotation around the Y axis
+    private float xSmoothInput = 0.0f; // Smoothed input for X axis
+    private float ySmoothInput = 0.0f; // Smoothed input for Y axis
+    private bool isRotating = false; // Flag to check if the camera is rotating
 
     void Start()
     {
@@ -32,10 +36,30 @@ public class CameraOrbit : MonoBehaviour
             // Rotate the camera with the right mouse button
             if (Input.GetMouseButton(1))
             {
-                currentX += Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
-                currentY -= Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
-                currentY = Mathf.Clamp(currentY, -89.9f, 89.9f); // Clamping the vertical rotation
+                xSmoothInput = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+                ySmoothInput = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
+                isRotating = true; // Set rotating flag to true
             }
+            else
+            {
+                // Apply deceleration when RMB is released
+                if (isRotating)
+                {
+                    xSmoothInput *= 1.0f - deceleration * Time.deltaTime;
+                    ySmoothInput *= 1.0f - deceleration * Time.deltaTime;
+
+                    if (Mathf.Abs(xSmoothInput) < 0.01f && Mathf.Abs(ySmoothInput) < 0.01f)
+                    {
+                        xSmoothInput = 0.0f;
+                        ySmoothInput = 0.0f;
+                        isRotating = false; // Stop rotating
+                    }
+                }
+            }
+
+            currentX += xSmoothInput;
+            currentY += ySmoothInput;
+            currentY = Mathf.Clamp(currentY, -89.9f, 89.9f); // Clamping the vertical rotation
 
             // Zoom the camera with the mouse scroll wheel
             distance -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;

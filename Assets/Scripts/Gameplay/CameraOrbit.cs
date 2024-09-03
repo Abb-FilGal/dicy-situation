@@ -5,7 +5,7 @@ public class CameraOrbit : MonoBehaviour
     public Transform target; // The target object to orbit around
     public float distance = 18.0f; // Initial distance from the target
     public float minDistance = 8.0f; // Minimum zoom distance
-    public float maxDistance = 18.0f; // Maximum zoom distance
+    public float maxDistance = 24.0f; // Maximum zoom distance
     public float zoomSpeed = 8.0f; // Speed of zooming
     public float rotationSpeed = 600.0f; // Speed of rotation
     public float deceleration = 5.0f; // Deceleration factor
@@ -66,12 +66,12 @@ public class CameraOrbit : MonoBehaviour
             distance = Mathf.Clamp(distance, minDistance, maxDistance);
 
             // Snap camera to predefined angles based on key press
-            if (Input.GetKeyDown(KeyCode.Alpha1)) { currentX = 0; currentY = 0; }    // Front
-            if (Input.GetKeyDown(KeyCode.Alpha2)) { currentX = 180; currentY = 0; }  // Back
-            if (Input.GetKeyDown(KeyCode.Alpha3)) { currentX = -90; currentY = 0; }  // Left
-            if (Input.GetKeyDown(KeyCode.Alpha4)) { currentX = 90; currentY = 0; }   // Right
-            if (Input.GetKeyDown(KeyCode.Alpha5)) { currentX = 0; currentY = 90; }   // Top
-            if (Input.GetKeyDown(KeyCode.Alpha6)) { currentX = 0; currentY = -90; }  // Bottom
+            if (Input.GetKeyDown(KeyCode.Alpha1)) { currentX = 0; currentY = 0; }    // Side 1
+            if (Input.GetKeyDown(KeyCode.Alpha2)) { currentX = 0; currentY = -90; }  // Side 2
+            if (Input.GetKeyDown(KeyCode.Alpha3)) { currentX = -90; currentY = 0; }  // Side 3
+            if (Input.GetKeyDown(KeyCode.Alpha4)) { currentX = 90; currentY = 0; }   // Side 4
+            if (Input.GetKeyDown(KeyCode.Alpha5)) { currentX = 0; currentY = 90; }   // Side 5
+            if (Input.GetKeyDown(KeyCode.Alpha6)) { currentX = 180; currentY = 0; }  // Side 6
 
             UpdateCameraPosition();
         }

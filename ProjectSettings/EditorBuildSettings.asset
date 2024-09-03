@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TestingGround/galin Test.unity
+    guid: 00350b87f37ce374491a7dcdf41107e4
   m_configObjects: {}

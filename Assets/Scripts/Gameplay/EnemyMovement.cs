@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
     void MoveTowardsWaypoint()
     {
         Vector3 direction = targetWaypoint.position - transform.position;
-        Debug.Log($"Moving towards waypoint {currentWaypointIndex + 1}: {targetWaypoint.position}");
+        //Debug.Log($"Moving towards waypoint {currentWaypointIndex + 1}: {targetWaypoint.position}");
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
             targetWaypoint = waypointsManager.GetNextWaypoint(currentWaypointIndex, reverse);
             if (targetWaypoint != null)
             {
-                Debug.Log($"Next waypoint: {currentWaypointIndex + 1} at {targetWaypoint.position}");
+                //Debug.Log($"Next waypoint: {currentWaypointIndex + 1} at {targetWaypoint.position}");
             }
             else
             {

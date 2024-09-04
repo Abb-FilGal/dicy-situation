@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     private Camera sceneCamera;
 
     [SerializeField]
-    private LayerMask placementLayermask;
+    public LayerMask placementLayermask;
 
     private Vector3 lastPosition;
 
@@ -20,10 +20,10 @@ public class InputManager : MonoBehaviour
         mousePos.z = sceneCamera.nearClipPlane;
         Ray ray = sceneCamera.ScreenPointToRay(mousePos);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100, placementLayermask))
+        if (Physics.Raycast(ray, out hit, 100))
         {
             lastPosition = hit.point;
-            print(lastPosition);
+            //print("LastPos: " + lastPosition);
         }
         return lastPosition;
     }

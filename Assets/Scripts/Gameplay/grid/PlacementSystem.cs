@@ -40,12 +40,29 @@ public class PlacementSystem : MonoBehaviour
         mouseIndicator.transform.position = mousePos;
     }
 
-    private void instantiateObject(Vector3 position,Quaternion rotation) // Add type 'Vector3' to the 'position' parameter
+    private void instantiateObject(Vector3 position, Quaternion rotation) // Add type 'Vector3' to the 'position' parameter
     {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        go.transform.position = position;
-        go.transform.localScale = new Vector3(0.8f, 1.6f, 0.8f); // Change double to float
-        go.transform.rotation = rotation;
-        //go.transform.parent = parent;
+        string folderPath = "Assets/Prefabs/Turrets"; // Specify the folder path where the prefab is located
+        GameObject[] prefabs; // Declare the prefabs array
+
+        prefabs = Resources.LoadAll<GameObject>(folderPath); // Load all prefabs from the specified folder
+
+        print("Prefabs: " + prefabs.Length);
+
+        if (prefabs.Length > 0) // Check if the prefabs array is not empty
+        {
+            int randomIndex = UnityEngine.Random.Range(0, prefabs.Length); // Generate a random index
+            GameObject prefab = prefabs[randomIndex]; // Get the prefab at the random index
+            print("Prefab: " + prefab.name);
+
+            GameObject go = Instantiate(prefab); // Instantiate the selected prefab
+            go.transform.position = position;
+            go.transform.localScale = new Vector3(0.8f, 1.6f, 0.8f); // Change double to float
+            go.transform.rotation = rotation;
+        }
+        else
+        {
+            print("No prefabs found in the specified folder: " + folderPath);
+        }
     }
 }

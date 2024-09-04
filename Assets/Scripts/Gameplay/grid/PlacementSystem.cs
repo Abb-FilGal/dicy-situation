@@ -42,7 +42,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void instantiateObject(Vector3 position, Quaternion rotation) // Add type 'Vector3' to the 'position' parameter
     {
-        string folderPath = "Assets/Prefabs/Turrets"; // Specify the folder path where the prefab is located
+        string folderPath = "Turrets"; // Specify the folder path where the prefab is located
         GameObject[] prefabs; // Declare the prefabs array
 
         prefabs = Resources.LoadAll<GameObject>(folderPath); // Load all prefabs from the specified folder
@@ -57,7 +57,7 @@ public class PlacementSystem : MonoBehaviour
 
             GameObject go = Instantiate(prefab); // Instantiate the selected prefab
             go.transform.position = position;
-            go.transform.localScale = new Vector3(0.8f, 1.6f, 0.8f); // Change double to float
+            go.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f); // Change double to float
             go.transform.rotation = rotation;
         }
         else

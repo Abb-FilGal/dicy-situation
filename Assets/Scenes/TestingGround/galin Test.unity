@@ -486,7 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 1155747635}
   mouseIndicator: {fileID: 660374801}
-  mouseCollider: {fileID: 0}
+  mouseCollider: {fileID: 660374802}
 --- !u!4 &266372113
 Transform:
   m_ObjectHideFlags: 0

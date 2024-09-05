@@ -30,9 +30,10 @@ public class PlacementSystem : MonoBehaviour
             Collider collidedCollider = colliders[0];
             print("MouseCollider: " + "Hit");
             instantiateObject(collidedCollider.transform.position, collidedCollider.transform.rotation); // Pass the position of the object the mouse has collided with
+            collidedCollider.gameObject.SetActive(false);
             }
         }
-            }
+    }
 
     private void UpdateMouseIndicator()
     {
@@ -51,14 +52,16 @@ public class PlacementSystem : MonoBehaviour
 
         if (prefabs.Length > 0) // Check if the prefabs array is not empty
         {
-            int randomIndex = UnityEngine.Random.Range(0, prefabs.Length); // Generate a random index
-            GameObject prefab = prefabs[randomIndex]; // Get the prefab at the random index
-            print("Prefab: " + prefab.name);
+            // int randomIndex = UnityEngine.Random.Range(0, prefabs.Length); // Generate a random index
+            // GameObject prefab = prefabs[randomIndex]; // Get the prefab at the random index
+            // print("Prefab: " + prefab.name);
 
-            GameObject go = Instantiate(prefab); // Instantiate the selected prefab
+            GameObject go = Instantiate(prefabs[0]); // Instantiate the selected prefab
             go.transform.position = position;
             go.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f); // Change double to float
             go.transform.rotation = rotation;
+
+            
         }
         else
         {

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SkyboxCamera
   - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX

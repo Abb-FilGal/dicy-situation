@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
     private int currentWaypointIndex = -1; // Start at -1 to correctly target w0 first
     private Transform targetWaypoint;
     private WaypointsManager waypointsManager;
     private bool reverse = false;
+    public float speed; // Speed of the enemy
+    private EnemyHealth enemyHealth; // Reference to the EnemyHealth component
 
     void Start()
     {
         waypointsManager = FindObjectOfType<WaypointsManager>();
         SetInitialWaypoint();
+        enemyHealth = GetComponent<EnemyHealth>(); // Get the EnemyHealth component
     }
 
     void Update()
@@ -46,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log("No more waypoints.");
+                // Handle case when there are no more waypoints
             }
         }
     }

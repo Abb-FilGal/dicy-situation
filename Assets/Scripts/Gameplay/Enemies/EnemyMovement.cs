@@ -44,6 +44,8 @@ public class EnemyMovement : MonoBehaviour
             targetWaypoint = waypointsManager.GetNextWaypoint(currentWaypointIndex, reverse);
             if (targetWaypoint != null)
             {
+                // Update rotation to match the waypoint's rotation
+                UpdateRotation();
                 //Debug.Log($"Next waypoint: {currentWaypointIndex + 1} at {targetWaypoint.position}");
             }
             else
@@ -58,6 +60,7 @@ public class EnemyMovement : MonoBehaviour
         if (waypointsManager != null && waypointsManager.waypoints.Length > 0)
         {
             targetWaypoint = waypointsManager.waypoints[0]; // Set initial target to the spawn point
+            UpdateRotation();
             Debug.Log($"Initial waypoint set to: {targetWaypoint.position}");
         }
     }
@@ -74,6 +77,14 @@ public class EnemyMovement : MonoBehaviour
         {
             // Handle game over logic
             Debug.Log("Game Over!");
+        }
+    }
+
+    private void UpdateRotation()
+    {
+        if (targetWaypoint != null)
+        {
+            transform.rotation = targetWaypoint.rotation;
         }
     }
 }

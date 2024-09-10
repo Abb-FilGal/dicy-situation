@@ -11,6 +11,11 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesRemainingToSpawn;
     private int enemiesRemainingAlive;
 
+    public int CurrentRoundNumber
+    {
+        get { return currentRoundIndex + 1; } // +1 to make it 1-based instead of 0-based
+    }
+
     void Start()
     {
         waypointsManager = FindObjectOfType<WaypointsManager>();
@@ -47,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
             if (enemyTypeCount.count > 0)
             {
                 Transform spawnPoint = waypointsManager.waypoints[0];
-                GameObject enemy = Instantiate(enemyTypeCount.enemyPrefab, spawnPoint.position, Quaternion.Euler(-90, 0, 0), transform);
+                GameObject enemy = Instantiate(enemyTypeCount.enemyPrefab, spawnPoint.position, Quaternion.Euler(0, 0, 0), transform);
                 enemy.GetComponent<EnemyMovement>().SetInitialWaypoint();
                 enemy.GetComponent<EnemyHealth>().OnDeath += OnEnemyDeath;
                 enemyTypeCount.count--;

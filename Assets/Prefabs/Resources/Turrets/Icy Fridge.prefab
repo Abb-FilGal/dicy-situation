@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6456425510552569883}
   - component: {fileID: 3397918135469418190}
   - component: {fileID: 552684474122749479}
+  - component: {fileID: -6843461802590713991}
   m_Layer: 0
   m_Name: Icy Fridge
   m_TagString: Untagged
@@ -83,3 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-6843461802590713991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234157173624114252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d4a3737357b9e429de51db0338bbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 1.5
+  raycastLength: 4
+  projectileForce: 0.2
+  projectilePrefab: {fileID: 986512086638068300, guid: 983b96fe000100f49bfeed44d60ce1e2, type: 3}

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pierce: 3
   Damage: 1
-  Lifetime: 1.6
+  Lifetime: 3
 --- !u!65 &9137578520612871111
 BoxCollider:
   m_ObjectHideFlags: 0

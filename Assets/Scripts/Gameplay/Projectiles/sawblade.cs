@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class sawblade : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Header("Projectile Stats")]
+    public int Pierce;
+    public float Damage;
+    public float Lifetime;
+
     void Start()
     {
-        
+        Destroy(gameObject, Lifetime);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Physics.IgnoreCollision(GetComponent<Collider>(), GameObject.FindGameObjectWithTag("Projectile").GetComponent<Collider>());
+        transform.Rotate(Vector3.up * 10);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("Hit");
+            //other.GetComponent<Enemy>().TakeDamage(Damage);
+            Pierce--;
+            if (Pierce <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

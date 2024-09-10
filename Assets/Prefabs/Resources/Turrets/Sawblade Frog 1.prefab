@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counter: 0
-  waitTime: 0.3
+  waitTime: 1.2
   raycastLength: 2.5
-  projectileForce: 1
-  projectilePrefab: {fileID: 5304385261262980998, guid: 186d82ecdcc8c4d46a26da6f8c1c632e, type: 3}
+  projectileForce: 5
+  projectilePrefab: {fileID: 7555449363298765201, guid: 9078ff475fd25d24d950a4e638c40a67, type: 3}

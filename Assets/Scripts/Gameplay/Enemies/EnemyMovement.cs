@@ -6,21 +6,68 @@ public class EnemyMovement : MonoBehaviour
     private Transform targetWaypoint;
     private WaypointsManager waypointsManager;
     private bool reverse = false;
-    public float speed; // Speed of the enemy
-    private EnemyHealth enemyHealth; // Reference to the EnemyHealth component
+    public float baseSpeed = 1.0f; // Speed of the enemy
+    private float currentSpeed; // Speed of the enemy after status adjustments
+    public bool isOiledUp = false; // Default oil status
+    public bool isFrozen = false; // Default freeze status
 
     void Start()
     {
         waypointsManager = FindObjectOfType<WaypointsManager>();
         SetInitialWaypoint();
-        enemyHealth = GetComponent<EnemyHealth>(); // Get the EnemyHealth component
+    }
+
+    // Apply oil status
+    public void ApplyOil()
+    {
+        isOiledUp = true;
+    }
+
+    // Remove oil status
+    public void RemoveOil()
+    {
+        isOiledUp = false;
+    }
+
+    // Apply freeze status
+    public void ApplyFreeze()
+    {
+        isFrozen = true;
+    }
+
+    // Remove freeze status
+    public void RemoveFreeze()
+    {
+        isFrozen = false;
     }
 
     void Update()
     {
+        AdjustSpeed();
+
         if (targetWaypoint != null)
         {
             MoveTowardsWaypoint();
+        }
+    }
+
+    // Adjust baseSpeed based on status
+    private void AdjustSpeed()
+    {
+        currentSpeed = baseSpeed;
+
+        if (isOiledUp)
+        {
+            currentSpeed *= 0.8f;
+        }
+
+        if (isFrozen)
+        {
+            currentSpeed *= 0.5f;
+        }
+        if (isOiledUp && isFrozen)
+        {
+            currentSpeed *= 0.4f;
         }
     }
 
@@ -28,7 +75,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 direction = targetWaypoint.position - transform.position;
         //Debug.Log($"Moving towards waypoint {currentWaypointIndex + 1}: {targetWaypoint.position}");
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        transform.Translate(direction.normalized * baseSpeed * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {

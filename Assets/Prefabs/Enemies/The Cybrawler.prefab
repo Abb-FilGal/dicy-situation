@@ -153,7 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44249ebd379dbeb4fb5a657a4af18f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  baseSpeed: 2
+  isOiledUp: 0
+  isFrozen: 0
 --- !u!114 &5679777830651583211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +169,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  threatLevel: 5
+  isBurning: 0

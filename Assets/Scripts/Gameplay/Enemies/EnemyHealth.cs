@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     private float burnInterval = 1.0f; // Interval for burn damage
     private int burnDamage = 5; // Damage per burn tick
     private Coroutine burnCoroutine;
+    public int pointsGiven; // Points given when enemy dies
 
     // Method to take damage
     public void TakeDamage(int damage)

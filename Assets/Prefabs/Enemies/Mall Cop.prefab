@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1594172858845894402}
   - component: {fileID: 3847025989555987325}
   - component: {fileID: 5679777830651583211}
+  - component: {fileID: -704446131732702071}
   m_Layer: 0
   m_Name: Mall Cop
   m_TagString: Enemy
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7250064397197498080}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0, z: -4}
+  m_LocalPosition: {x: -0.25, y: 0.338, z: -4}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -60,6 +61,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+--- !u!65 &-704446131732702071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7250064397197498080}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!1001 &1937691351242142947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 11c1bb9fe7859a4428a1f3bf82dd4e2b, type: 3}
       propertyPath: m_Name
       value: Icy Fridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11c1bb9fe7859a4428a1f3bf82dd4e2b, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

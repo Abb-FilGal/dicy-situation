@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44249ebd379dbeb4fb5a657a4af18f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  baseSpeed: 1
+  isOiledUp: 0
+  isFrozen: 0
 --- !u!114 &5679777830651583211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+<<<<<<< HEAD
 --- !u!65 &-704446131732702071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -82,6 +85,10 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.5, z: 1}
   m_Center: {x: 0, y: 0.75, z: 0}
+=======
+  threatLevel: 1
+  isBurning: 0
+>>>>>>> c4b9ee10e7b3d73e80cb30872377c72c37b0fed5
 --- !u!1001 &1937691351242142947
 PrefabInstance:
   m_ObjectHideFlags: 0

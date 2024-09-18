@@ -98,5 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 1.5
   raycastLength: 4
-  projectileForce: 1
+  projectileForce: 3
   projectilePrefab: {fileID: 986512086638068300, guid: 983b96fe000100f49bfeed44d60ce1e2, type: 3}
+  targetTag: Enemy

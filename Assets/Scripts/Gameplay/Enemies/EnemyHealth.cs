@@ -15,9 +15,15 @@ public class EnemyHealth : MonoBehaviour
     public int pointsGiven; // Points given when enemy dies
 
     // Method to take damage
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, string name)
     {
-        hp -= damage;
+        if(GetComponent<EnemyMovement>().isFrozen && name == "sawblade"){
+            hp -= damage*2;
+            }
+            else{
+                hp -= damage;
+            }
+
         if (hp <= 0)
         {
             Die();
@@ -46,7 +52,7 @@ public class EnemyHealth : MonoBehaviour
     {
         while (isBurning)
         {
-            TakeDamage(burnDamage);
+            TakeDamage(burnDamage, "burn");
             yield return new WaitForSeconds(burnInterval);
         }
     }

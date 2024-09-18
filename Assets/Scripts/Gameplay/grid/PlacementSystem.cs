@@ -56,7 +56,7 @@ public class PlacementSystem : MonoBehaviour
             // GameObject prefab = prefabs[randomIndex]; // Get the prefab at the random index
             // print("Prefab: " + prefab.name);
 
-            GameObject go = Instantiate(prefabs[0]); // Instantiate the selected prefab
+            GameObject go = Instantiate(prefabs[1]); // Instantiate the selected prefab
             go.transform.position = position;
             go.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f); // Change double to float
             go.transform.rotation = rotation;

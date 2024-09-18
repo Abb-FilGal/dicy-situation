@@ -6,7 +6,7 @@ public class sawblade : MonoBehaviour
 {
     [Header("Projectile Stats")]
     public int Pierce;
-    public float Damage;
+    public int Damage;
     public float Lifetime;
 
     void Start()
@@ -23,8 +23,8 @@ public class sawblade : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Hit");
-            //other.GetComponent<Enemy>().TakeDamage(Damage);
+            Debug.Log( GetType().Name + " hit SAW");
+            other.transform.parent.GetComponent<EnemyHealth>().TakeDamage(Damage, "sawblade");
             Pierce--;
             if (Pierce <= 0)
             {
@@ -33,3 +33,4 @@ public class sawblade : MonoBehaviour
         }
     }
 }
+

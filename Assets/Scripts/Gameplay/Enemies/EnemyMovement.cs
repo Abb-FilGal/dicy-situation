@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     private float currentSpeed; // Speed of the enemy after status adjustments
     public bool isOiledUp = false; // Default oil status
     public bool isFrozen = false; // Default freeze status
+    public int freezeDuration = 3; // Default freeze duration
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
     public void ApplyFreeze()
     {
         isFrozen = true;
+        Invoke("RemoveFreeze", freezeDuration);
     }
 
     // Remove freeze status

@@ -6,7 +6,7 @@ public class IceBall : MonoBehaviour
 {
     [Header("Projectile Stats")]
     public int Pierce;
-    public float Damage;
+    public int Damage;
     public float Lifetime;
 
     void Start()
@@ -24,7 +24,8 @@ public class IceBall : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("Hit ICE");
-            //other.GetComponent<Enemy>().TakeDamage(Damage);
+            other.transform.parent.GetComponent<EnemyHealth>().TakeDamage(Damage, "IceBall");
+            other.transform.parent.GetComponent<EnemyMovement>().ApplyFreeze();
             Pierce--;
             if (Pierce <= 0)
             {

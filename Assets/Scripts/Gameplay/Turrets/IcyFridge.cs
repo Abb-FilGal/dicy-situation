@@ -24,7 +24,7 @@ public class IcyFridge : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.right * raycastLength, raycastHit ? Color.red : Color.green);
 
                 // If a target is detected and the object has the correct tag
-                if (raycastHit)
+                if (raycastHit && hit.collider.CompareTag("Enemy"))
                 {
                     // Fire at the target
                     Debug.Log("Target in sight: " + hit.collider.name);

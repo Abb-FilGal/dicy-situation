@@ -1,57 +1,66 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SawbladeFrog : MonoBehaviour
 {
-    public int counter = 0;
+    public float waitTime;          // Cooldown time between shots
+    public float raycastLength;     // Length of the raycast
+    public float projectileForce;   // Force applied to the projectile
+    private bool canShoot = true;
 
-    // Update is called once per frame
-    public float waitTime;
-    public float raycastLength;
-    public float projectileForce;
+    public GameObject projectilePrefab;   // The projectile prefab
+    public string targetTag = "Enemy";    // Tag of the target to shoot at
 
-    public GameObject projectilePrefab;
-
-    IEnumerator PerformActionCoroutine()
+    private IEnumerator PerformActionCoroutine()
     {
-        while (true)
-        {
-            WaitForSeconds waitForSeconds = new WaitForSeconds(waitTime);
-            yield return waitForSeconds;
-  
-            // Cast a ray forward
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.right, out hit, raycastLength))
+        while(true){
+        if (canShoot)
             {
-                // Draw a visible ray in the scene view
-                Debug.DrawRay(transform.position, transform.right * hit.distance, Color.red);
+                RaycastHit hit;
+                // Cast a ray to detect objects in front of the turret
+                bool raycastHit = Physics.Raycast(transform.position, transform.right, out hit, raycastLength);
 
-                // Check if the ray hits an object with the "Enemy" tag
-                if (hit.collider.CompareTag("Enemy"))
+                // Visualize the ray in the editor (green = no hit, red = hit)
+                Debug.DrawRay(transform.position, transform.right * raycastLength, raycastHit ? Color.red : Color.green);
+
+                // If a target is detected and the object has the correct tag
+                if (raycastHit && hit.collider.CompareTag("Enemy"))
                 {
+                    // Fire at the target
+                    Debug.Log("Target in sight: " + hit.collider.name);
                     PerformAction();
+                    
+                    // Enter cooldown period
+                    canShoot = false;
+                    yield return new WaitForSeconds(waitTime);  // Wait for the cooldown to finish
+                    canShoot = true;  // Reset the flag so the turret can shoot again
                 }
             }
+            Debug.Log("on Cooldwon");
+
+            yield return null;  // Continue checking each frame
         }
     }
+        
+
 
     void Start()
     {
+        // Start the coroutine when the game starts
         StartCoroutine(PerformActionCoroutine());
     }
 
     void PerformAction()
     {
-        Debug.Log("Performing action!");
+        Debug.Log("Firing projectile!");
 
-        // Instantiate the projectile prefab
+        // Instantiate the projectile at the current position and rotation
         GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
 
-        // Get the rigidbody component of the projectile
+        // Get the Rigidbody component of the projectile
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
 
-        // Apply a force to make the projectile move forward
+        // Apply a force to make the projectile move forward (using transform.right for direction)
         projectileRigidbody.AddForce(transform.right * projectileForce, ForceMode.Impulse);
     }
 }

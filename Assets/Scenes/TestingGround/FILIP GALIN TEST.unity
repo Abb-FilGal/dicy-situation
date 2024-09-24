@@ -377,6 +377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338023203}
   - component: {fileID: 338023204}
+  - component: {fileID: 338023205}
   m_Layer: 0
   m_Name: PlacementManager
   m_TagString: Untagged
@@ -406,7 +407,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338023202}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62ba8634b36784144bcb7c6c305b7dd1, type: 3}
   m_Name: 
@@ -414,6 +415,25 @@ MonoBehaviour:
   inputManager: {fileID: 2141496844}
   mouseIndicator: {fileID: 452645234}
   mouseCollider: {fileID: 452645235}
+--- !u!114 &338023205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338023202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f427ca6e8b1365a43848f13edac2e91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placementLayermask:
+    serializedVersion: 2
+    m_Bits: 64
+  prefabs: []
+  index: 1
+  currentName: 
+  isPreviewActive: 0
 --- !u!1 &452645234
 GameObject:
   m_ObjectHideFlags: 0

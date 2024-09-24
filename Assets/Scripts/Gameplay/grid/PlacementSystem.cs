@@ -68,4 +68,7 @@ public class PlacementSystem : MonoBehaviour
             print("No prefabs found in the specified folder: " + folderPath);
         }
     }
+
+    
+
 }

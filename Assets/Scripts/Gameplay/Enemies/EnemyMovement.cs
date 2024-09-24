@@ -56,20 +56,27 @@ public class EnemyMovement : MonoBehaviour
     // Adjust baseSpeed based on status
     private void AdjustSpeed()
     {
-        currentSpeed = baseSpeed;
+        const float speedMultiplier = 0.375f;
+        currentSpeed = baseSpeed * speedMultiplier;
+
+        //Debug.Log($"Base speed: {baseSpeed}, Speed multiplier: {speedMultiplier}, Current speed after multiplier: {currentSpeed}");
 
         if (isOiledUp)
         {
             currentSpeed *= 0.8f;
+            Debug.Log($"Oiled up: {isOiledUp}, Current speed after oil adjustment: {currentSpeed}");
         }
 
         if (isFrozen)
         {
             currentSpeed *= 0.5f;
+            Debug.Log($"Frozen: {isFrozen}, Current speed after freeze adjustment: {currentSpeed}");
         }
+
         if (isOiledUp && isFrozen)
         {
             currentSpeed *= 0.4f;
+            Debug.Log($"Oiled up and frozen: {isOiledUp && isFrozen}, Current speed after both adjustments: {currentSpeed}");
         }
     }
 
@@ -77,11 +84,11 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 direction = targetWaypoint.position - transform.position;
         //Debug.Log($"Moving towards waypoint {currentWaypointIndex + 1}: {targetWaypoint.position}");
-        transform.Translate(direction.normalized * baseSpeed * Time.deltaTime, Space.World);
+        transform.Translate(direction.normalized * currentSpeed * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
-            Debug.Log($"Reached waypoint {currentWaypointIndex + 1}");
+            //Debug.Log($"Reached waypoint {currentWaypointIndex + 1}");
             if (reverse)
             {
                 currentWaypointIndex--;
@@ -110,7 +117,7 @@ public class EnemyMovement : MonoBehaviour
         {
             targetWaypoint = waypointsManager.waypoints[0]; // Set initial target to the spawn point
             UpdateRotation();
-            Debug.Log($"Initial waypoint set to: {targetWaypoint.position}");
+            //Debug.Log($"Initial waypoint set to: {targetWaypoint.position}");
         }
     }
 

@@ -17,12 +17,14 @@ public class EnemyHealth : MonoBehaviour
     // Method to take damage
     public void TakeDamage(int damage, string name)
     {
-        if(GetComponent<EnemyMovement>().isFrozen && name == "sawblade"){
-            hp -= damage*2;
-            }
-            else{
-                hp -= damage;
-            }
+        if (GetComponent<EnemyMovement>().isFrozen && name == "sawblade")
+        {
+            hp -= damage * 2;
+        }
+        else
+        {
+            hp -= damage;
+        }
 
         if (hp <= 0)
         {
@@ -34,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         OnDeath?.Invoke();
+        GameManager.instance.AddPoints(pointsGiven);
         Destroy(gameObject);
     }
 

@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 413254024629346032}
   - component: {fileID: 4190051405805669711}
   - component: {fileID: 2672437565149631042}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Dice World
   m_TagString: Untagged
   m_Icon: {fileID: 0}

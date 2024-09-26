@@ -7,171 +7,135 @@ public class PlacementAndRotation : MonoBehaviour
     [SerializeField]
     public LayerMask placementLayermask;
     public GameObject[] prefabs;
-    public int index;
-    public string currentName = "start";
-    public RaycastHit curentObject;
+    public string currentName;
+    public GameObject prefab;
 
-    [SerializeField]
-    private bool isPreviewActive = false;
-    private GameObject previewObject;
+    public bool isPreviewActive = false;
+    public bool hasPlaced = false;  // Ensures the object is placed
+    public GameObject previewObject;
 
     void Start()
     {
-        prefabs = Resources.LoadAll<GameObject>("Turrets");
-        Debug.Log("There are: " + prefabs.Length + " prefabs loaded");
+        prefabs = Resources.LoadAll<GameObject>("Turrets");  // Ensure this path is correct
+        Debug.Log("There are " + prefabs.Length + " prefabs loaded.");
+
+        if (prefabs.Length == 0)
+        {
+            Debug.LogError("No prefabs found in the 'Turrets' folder.");
+        }
+        prefab = prefabs[0];
+    }
+
+
+    // Public function to start the tower placement preview, called from GameManager
+    public void StartTowerPlacement()
+    {
+        int index = Random.Range(0, prefabs.Length);
+        Debug.Log("Index is: " + index);
+        prefab = prefabs[index];
+
+        // isPreviewActive = true;  // Activate preview mode
+        hasPlaced = false;  // Reset hasPlaced for a new placement
     }
 
     void Update()
     {
-        // Debug.Log("Test1");
-        HandlePreview(prefabs[index]);
-        HandlePlacement();  // Call the new HandlePlacement function to handle placement
-        // Debug.Log("TESTs");
+        if (!hasPlaced)
+        {
+            HandlePreview();  // Handle the preview and placement while the tower is not placed
+            Debug.Log("Trying to handle preview");
+        }
     }
 
-    void HandleRotation(string name, Quaternion originRotation)
+    public void HandlePreview()
     {
-        if (name.Length > 0)
+        Camera skyboxCamera = GameObject.FindWithTag("SkyboxCamera").GetComponent<Camera>();
+        Ray ray = skyboxCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        // Perform the raycast and ensure a valid hit
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, placementLayermask))
         {
-            char firstCharacter = name[9]; // Get the first character
+            Debug.Log(hit.transform.position);
 
-            switch (firstCharacter)
+            // Instantiate the preview object if it doesn't exist
+            if (!isPreviewActive)
+            {   
+                Debug.Log("trying to instantiate previewObject");
+                previewObject = Instantiate(prefab);  // Create the preview object
+
+                SetObjectOpacity(previewObject, 0.7f);
+
+                // Disable all MonoBehaviour scripts on the preview object
+                MonoBehaviour[] allScripts = previewObject.GetComponentsInChildren<MonoBehaviour>();
+                foreach (MonoBehaviour script in allScripts)
+                {
+                    script.enabled = false;
+                }
+
+                isPreviewActive = true;
+                currentName = hit.transform.name;
+
+                previewObject.transform.rotation = hit.transform.rotation;
+            }
+
+            // Check if the current object name has changed and if the previewObject is not null
+            if (previewObject != null && hit.transform != null && currentName != hit.transform.name)
             {
-                case '1':
-                    Debug.Log("First character is 1");
-                    
-                    break;
+                // Apply the current rotation
+                previewObject.transform.rotation = hit.transform.rotation;
+                currentName = hit.transform.name;
+            }
 
-                case '2':
-                    Debug.Log("First character is 2");
-                    if(Input.GetKeyDown(KeyCode.R)){
-                        RotatePreviewObject(originRotation, 90f, 0f, 0f);
-                    }
-                    break;
+            // Move preview object to the hit position
+            if (previewObject != null)
+            {
+                previewObject.transform.position = hit.transform.position;
+                previewObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f); // Set scale
+            }
 
-                case '3':
-                    Debug.Log("First character is 3");
-                    if(Input.GetKeyDown(KeyCode.R)){
-                        RotatePreviewObject(originRotation, 90f, 0f, 0f);
-                    }
-                    break;
+            // Handle rotation on key press
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RotatePreviewObject(previewObject.transform.rotation, 0f, 90f, 0f);
+            }
 
-                case '4':
-                    Debug.Log("First character is 4");
-                    if(Input.GetKeyDown(KeyCode.R)){
-                        RotatePreviewObject(originRotation, 0f, 90f, 0f);
-                    }
-                    break;
-
-                case '5':
-                    Debug.Log("First character is 5");
-                    if(Input.GetKeyDown(KeyCode.R)){
-                        RotatePreviewObject(originRotation, 0f, 90f, 0f);
-                    }
-                    break;
-
-                case '6':
-                    Debug.Log("First character is 6");
-                    if(Input.GetKeyDown(KeyCode.R)){
-                        RotatePreviewObject(originRotation, 0f, 90f, 0f);
-                    }
-                    break;
-
-                default:
-                    Debug.Log("First character is not in the range of 1-6 and is: " + name);
-                    break;
+            // Handle object placement on key press (e.g., pressing Q)
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                PlaceObject();
             }
         }
     }
 
-    void RotatePreviewObject(Quaternion originRotation, float x, float y, float z)
+    // Method to handle placing the object
+    void PlaceObject()
     {
-        Debug.Log("Test rotate function going");
-        Quaternion currentRotation = originRotation;
-        Quaternion additionalRotation = Quaternion.Euler(x, y, z); 
-        Quaternion newRotation = currentRotation * additionalRotation;
-
         if (previewObject != null)
         {
-            previewObject.transform.rotation = newRotation;
-        }
-    }
+            // Set opacity back to 100%
+            SetObjectOpacity(previewObject, 1.0f);
 
-    void ExportHit(RaycastHit hitmarker){
-        curentObject = hitmarker;
-        Debug.Log(curentObject); 
-    }
-
-void HandlePreview(GameObject prefab)
-{
-    Camera skyboxCamera = GameObject.FindWithTag("SkyboxCamera").GetComponent<Camera>();
-    Ray ray = skyboxCamera.ScreenPointToRay(Input.mousePosition);
-    RaycastHit hit;
-
-    // Perform the raycast and ensure a valid hit
-    if (Physics.Raycast(ray, out hit, Mathf.Infinity, placementLayermask))
-    {
-        Debug.Log(hit.transform.position);
-
-        // Instantiate the preview object if it doesn't exist
-        if (!isPreviewActive)
-        {
-            previewObject = Instantiate(prefab);  // Create the preview object
-
-            SetObjectOpacity(previewObject, 0.7f);
-
-            // Disable all MonoBehaviour scripts on the preview object
+            // Re-enable all MonoBehaviour scripts
             MonoBehaviour[] allScripts = previewObject.GetComponentsInChildren<MonoBehaviour>();
             foreach (MonoBehaviour script in allScripts)
             {
-                script.enabled = false;
+                script.enabled = true;
             }
 
-            isPreviewActive = true;
-            currentName = hit.transform.name;
-
-            previewObject.transform.rotation = hit.transform.rotation;
-        }
-
-        // Check if the current object name has changed and if the previewObject is not null
-        if (previewObject != null && hit.transform != null && currentName != hit.transform.name)
-        {
-            // Apply the current rotation
-            previewObject.transform.rotation = hit.transform.rotation;
-            currentName = hit.transform.name;
-        }
-
-        // Move preview object to the hit position
-        if (previewObject != null)
-        {
-            previewObject.transform.position = hit.transform.position;
-            previewObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f); // Set scale
-        }
-
-        if(Input.GetKeyDown(KeyCode.R)){
-            RotatePreviewObject(previewObject.transform.rotation, 0f, 90f, 0f);
+            hasPlaced = true;  // Mark object as placed
+            isPreviewActive = false;  // Disable preview mode
         }
     }
-}
 
-
-    void HandlePlacement()
+    // Method to rotate the preview object
+    void RotatePreviewObject(Quaternion originRotation, float x, float y, float z)
     {
-        if (Input.GetKeyDown(KeyCode.Q) && isPreviewActive)
-        {
-            // Lock the object in place
-            SetObjectOpacity(previewObject, 1.0f);  // Reset opacity to 100%
-            EnableAllScripts(previewObject);  // Enable all MonoBehaviour scripts
-
-
-
-            isPreviewActive = false;  // Reset for the next preview
-            previewObject = null;  // Clear the current previewObject
-
-            Debug.Log("Object placed and ready for the next object.");
-        }
+        Quaternion additionalRotation = Quaternion.Euler(x, y, z);
+        previewObject.transform.rotation = originRotation * additionalRotation;
     }
 
+    // Method to change the opacity of the object
     void SetObjectOpacity(GameObject obj, float opacity)
     {
         Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
@@ -180,12 +144,12 @@ void HandlePreview(GameObject prefab)
             foreach (Material mat in renderer.materials)
             {
                 Color color = mat.color;
-                color.a = opacity; 
+                color.a = opacity;
                 mat.color = color;
 
                 if (mat.HasProperty("_Mode"))
                 {
-                    mat.SetFloat("_Mode", 2);  
+                    mat.SetFloat("_Mode", 2);
                     mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
                     mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
                     mat.SetInt("_ZWrite", 0);
@@ -195,25 +159,6 @@ void HandlePreview(GameObject prefab)
                     mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
                 }
             }
-        }
-    }
-
-    void EnableAllScripts(GameObject obj)
-    {
-        // Re-enable all previously disabled MonoBehaviour scripts
-        MonoBehaviour[] allScripts = obj.GetComponentsInChildren<MonoBehaviour>();
-        foreach (MonoBehaviour script in allScripts)
-        {
-            script.enabled = true;
-        }
-    }
-        void DisableAllScripts(GameObject obj)
-    {
-        // Re-enable all previously disabled MonoBehaviour scripts
-        MonoBehaviour[] allScripts = obj.GetComponentsInChildren<MonoBehaviour>();
-        foreach (MonoBehaviour script in allScripts)
-        {
-            script.enabled = false;
         }
     }
 }

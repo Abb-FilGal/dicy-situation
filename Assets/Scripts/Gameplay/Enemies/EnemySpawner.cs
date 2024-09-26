@@ -57,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
                 enemy.GetComponent<EnemyHealth>().OnDeath += OnEnemyDeath;
                 enemyTypeCount.count--;
                 enemiesRemainingToSpawn--;
-                Debug.Log($"Spawned enemy at {spawnPoint.position} with rotation {enemy.transform.rotation.eulerAngles}");
+                Debug.Log($"Spawned enemy.");
             }
             else
             {

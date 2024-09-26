@@ -1,10 +1,14 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI pointsText;
+    public Image pointsFill;
     public TextMeshProUGUI roundsText;
+    public Image purchaseButton;
+    public Sprite purchaseButtonDisabled;
+    public Sprite purchaseButtonEnabled;
     private EnemySpawner enemySpawner;
 
     void Start()
@@ -23,7 +27,26 @@ public class UIManager : MonoBehaviour
         if (GameManager.instance != null)
         {
             int totalPoints = GameManager.instance.GetTotalPoints();
-            pointsText.text = "Points: " + totalPoints;
+            if (pointsFill != null && GameManager.maxPoints != 0)
+            {
+                float fillAmount = (float)totalPoints / GameManager.maxPoints;
+                pointsFill.fillAmount = Mathf.Min(fillAmount, 0.8f);
+
+                Color lightBlue = new Color(0.5f, 0.5f, 1f);
+                Color darkBlue = new Color(0f, 0f, 0.5f);
+
+                pointsFill.color = Color.Lerp(lightBlue, darkBlue, fillAmount);
+                if (totalPoints < GameManager.maxPoints)
+                {
+                    purchaseButton.sprite = purchaseButtonDisabled;
+                    purchaseButton.GetComponent<Button>().interactable = false;
+                }
+                else
+                {
+                    purchaseButton.sprite = purchaseButtonEnabled;
+                    purchaseButton.GetComponent<Button>().interactable = true;
+                }
+            }
         }
     }
 

@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     private int totalPoints = 100;
+    public const int maxPoints = 100;
 
     void Awake()
     {
@@ -20,6 +21,10 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int points)
     {
         totalPoints += points;
+        if (totalPoints > maxPoints)
+        {
+            totalPoints = maxPoints;
+        }
         //Debug.Log($"Points added: {points}, Total points: {totalPoints}");
     }
 
@@ -35,5 +40,11 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void PurchaseTower()
+    {
+        // This may need to be redone
+        SpendPoints(100);
     }
 }

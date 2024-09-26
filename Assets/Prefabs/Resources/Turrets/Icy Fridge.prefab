@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3397918135469418190}
   - component: {fileID: 552684474122749479}
   - component: {fileID: -6843461802590713991}
+  - component: {fileID: 2832829455514005644}
   m_Layer: 0
   m_Name: Icy Fridge
   m_TagString: Untagged
@@ -101,3 +102,24 @@ MonoBehaviour:
   projectileForce: 3
   projectilePrefab: {fileID: 986512086638068300, guid: 983b96fe000100f49bfeed44d60ce1e2, type: 3}
   targetTag: Enemy
+--- !u!65 &2832829455514005644
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234157173624114252}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9, y: 1.6, z: 0.9}
+  m_Center: {x: -0.049999997, y: 0.8, z: -0.049999997}

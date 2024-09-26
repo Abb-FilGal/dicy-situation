@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7878852167214890705}
   - component: {fileID: 6777716656512722713}
   - component: {fileID: 8374108886611744859}
+  - component: {fileID: 4972996775572148132}
   m_Layer: 0
   m_Name: SawbladeFrog
   m_TagString: Untagged
@@ -101,3 +102,24 @@ MonoBehaviour:
   projectileForce: 5
   projectilePrefab: {fileID: 7555449363298765201, guid: 9078ff475fd25d24d950a4e638c40a67, type: 3}
   targetTag: Enemy
+--- !u!65 &4972996775572148132
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495033327507158382}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9, y: 1, z: 0.9}
+  m_Center: {x: -0.049999997, y: 0.5, z: -0.049999997}

@@ -17,9 +17,10 @@ public class EnemyHealth : MonoBehaviour
     // Method to take damage
     public void TakeDamage(int damage, string name)
     {
-        if (GetComponent<EnemyMovement>().isFrozen && name == "sawblade")
+        if (name == "sawblade")
         {
-            hp -= damage * 2;
+            if(GetComponent<EnemyMovement>().isFrozen){hp -= damage * 2;};
+            if(GetComponent<EnemyMovement>().isOiledUp){damage = 0;};
         }
         else
         {

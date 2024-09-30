@@ -33,7 +33,6 @@ public class PlacementAndRotation : MonoBehaviour
         int index = Random.Range(0, prefabs.Length);
         Debug.Log("Index is: " + index);
         prefab = prefabs[index];
-
         // isPreviewActive = true;  // Activate preview mode
         hasPlaced = false;  // Reset hasPlaced for a new placement
     }

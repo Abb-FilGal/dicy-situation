@@ -42,7 +42,7 @@ public class PlacementAndRotation : MonoBehaviour
         if (!hasPlaced)
         {
             HandlePreview();  // Handle the preview and placement while the tower is not placed
-            Debug.Log("Trying to handle preview");
+            // Debug.Log("Trying to handle preview");
         }
     }
 

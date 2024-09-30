@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -37,6 +39,8 @@ public class GameManager : MonoBehaviour
         }
         //Debug.Log($"Points added: {points}, Total points: {totalPoints}");
     }
+
+    public void ReturnToHome(){SceneManager.LoadScene("MainMenu");}
 
     public int GetTotalPoints()
     {

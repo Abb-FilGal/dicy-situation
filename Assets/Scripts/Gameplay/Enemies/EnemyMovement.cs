@@ -56,7 +56,7 @@ public class EnemyMovement : MonoBehaviour
     // Adjust baseSpeed based on status
     private void AdjustSpeed()
     {
-        const float speedMultiplier = 0.375f;
+        const float speedMultiplier = 0.17f;
         currentSpeed = baseSpeed * speedMultiplier;
 
         //Debug.Log($"Base speed: {baseSpeed}, Speed multiplier: {speedMultiplier}, Current speed after multiplier: {currentSpeed}");
@@ -123,13 +123,31 @@ public class EnemyMovement : MonoBehaviour
         }
     }
     void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.CompareTag("PlayerBase"))
     {
-        if (collision.gameObject.CompareTag("PlayerBase"))
+        // Handle game over logic
+        Debug.Log("Game Over!");
+
+        // Disable all colliders on this object and its children
+        Collider[] enemyColliders = GetComponentsInChildren<Collider>();
+        foreach (Collider enemyCollider in enemyColliders)
         {
-            // Handle game over logic - lose?
-            Debug.Log("Game Over!");
+            if (enemyCollider != null)
+            {
+                enemyCollider.enabled = false;
+            }
         }
+
+        // Optionally disable this script if you want to stop further actions on this object
+        this.enabled = false;
+
+        // Optionally handle enemy death logic
+        // GetComponent<EnemyHealth>().Die();
     }
+}
+
+
 
     private void UpdateRotation()
     {

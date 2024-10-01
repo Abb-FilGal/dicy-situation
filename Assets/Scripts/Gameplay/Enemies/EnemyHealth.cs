@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     // Method to handle enemy death
-    private void Die()
+    public void Die()
     {
         OnDeath?.Invoke();
         GameManager.instance.AddPoints(pointsGiven);

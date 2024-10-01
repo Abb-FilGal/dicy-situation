@@ -135,7 +135,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.25, y: 0, z: -4}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9040295908122205705}
@@ -157,6 +157,8 @@ MonoBehaviour:
   baseSpeed: 12
   isOiledUp: 0
   isFrozen: 0
+  freezeDuration: 3
+  isReverse: 0
 --- !u!114 &5679777830651583211
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,8 +21,15 @@ public class EnemySpawner : MonoBehaviour
         waypointsManager = FindObjectOfType<WaypointsManager>();
         if (waypointsManager != null && waypointsManager.waypoints.Length > 0)
         {
-            StartRound();
+            Invoke("StartRound", 10f);
+            // StartRound();
+            
         }
+    }
+
+    void Update()
+    {
+        // StartRound();
     }
 
     void StartRound()

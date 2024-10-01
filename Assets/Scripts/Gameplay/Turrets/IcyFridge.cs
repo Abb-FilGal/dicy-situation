@@ -18,10 +18,10 @@ public class IcyFridge : MonoBehaviour
             {
                 RaycastHit hit;
                 // Cast a ray to detect objects in front of the turret
-                bool raycastHit = Physics.Raycast(transform.position, transform.right, out hit, raycastLength);
+                bool raycastHit = Physics.Raycast(transform.position, transform.forward, out hit, raycastLength);
 
                 // Visualize the ray in the editor (green = no hit, red = hit)
-                Debug.DrawRay(transform.position, transform.right * raycastLength, raycastHit ? Color.red : Color.green);
+                Debug.DrawRay(transform.position, transform.forward * raycastLength, raycastHit ? Color.red : Color.green);
 
                 // If a target is detected and the object has the correct tag
                 if (raycastHit && hit.collider.CompareTag("Enemy"))
@@ -61,6 +61,6 @@ public class IcyFridge : MonoBehaviour
         Rigidbody projectileRigidbody = projectile.GetComponent<Rigidbody>();
 
         // Apply a force to make the projectile move forward (using transform.right for direction)
-        projectileRigidbody.AddForce(transform.right * projectileForce, ForceMode.Impulse);
+        projectileRigidbody.AddForce(transform.forward * projectileForce, ForceMode.Impulse);
     }
 }

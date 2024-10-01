@@ -55,7 +55,7 @@ public class PlacementAndRotation : MonoBehaviour
         // Perform the raycast and ensure a valid hit
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, placementLayermask))
         {
-            Debug.Log(hit.transform.position);
+            // Debug.Log(hit.transform.position);
 
             // Instantiate the preview object if it doesn't exist
             if (!isPreviewActive)
@@ -100,7 +100,7 @@ public class PlacementAndRotation : MonoBehaviour
             }
 
             // Handle object placement on key press (e.g., pressing Q)
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetMouseButtonDown(0))
             {
                 PlaceObject();
             }
@@ -114,6 +114,8 @@ public class PlacementAndRotation : MonoBehaviour
         {
             // Set opacity back to 100%
             SetObjectOpacity(previewObject, 1.0f);
+
+            foreach( Transform child in previewObject.transform){child.gameObject.SetActive(false);}
 
             // Re-enable all MonoBehaviour scripts
             MonoBehaviour[] allScripts = previewObject.GetComponentsInChildren<MonoBehaviour>();

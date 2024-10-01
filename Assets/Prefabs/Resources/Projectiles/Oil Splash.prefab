@@ -147,5 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pierce: 1000
-  Damage: 5
+  Damage: 10
   Lifetime: 0.6

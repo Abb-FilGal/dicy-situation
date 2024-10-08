@@ -157,6 +157,8 @@ MonoBehaviour:
   baseSpeed: 5
   isOiledUp: 0
   isFrozen: 0
+  freezeDuration: 3
+  isReverse: 0
 --- !u!114 &5679777830651583211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +174,7 @@ MonoBehaviour:
   hp: 60
   threatLevel: 10
   isBurning: 0
-  pointsGiven: 60
+  pointsGiven: 50
 --- !u!1001 &8820797734956823958
 PrefabInstance:
   m_ObjectHideFlags: 0

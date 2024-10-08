@@ -174,7 +174,7 @@ MonoBehaviour:
   hp: 350
   threatLevel: 40
   isBurning: 0
-  pointsGiven: 300
+  pointsGiven: 100
 --- !u!1001 &8675321074956818048
 PrefabInstance:
   m_ObjectHideFlags: 0

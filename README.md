@@ -1,30 +1,37 @@
-# Dicey Situation
+<p align="center">
+  <img src="Assets/README/TitleSimpleLarge.png" alt="Game Title Image">
+</p>
+
+<p align="center"><em>Are you ready to roll the dice?</em></p>
+
+---
 
 <details>
-<summary>Table of Contents</summary>
+<summary>Table of Contents 📜</summary>
 
 - [Background](#background)
-- [Project Description](#project-description)
-- [Organization](#organization)
-
+- [Authors](#authors)
+- [How to Play](#howtoplay)
 </details>
 
-### Background
+---
 
-The F.E.E. Team makes a return with an invigorating Tower Defense experience - a game where you're placed in quite literally a **Dicey Situation**. Dice, RNG, wackiness, and chaos make for a game that could intrigue people of all ages and mindsets.
-We hope you appreciate our contribution.
+### Background 📚
 
-### Project description
+Welcome to **Dicey Situation**, a fast-paced Tower Defense game that blends dice mechanics with unpredictable RNG chaos. The F.E.E. Team proudly presents a unique experience where strategy meets randomness, keeping players on the edge of their seats!
 
-The game is made in Unity with the power of combined effort. Roles have been assigned to each of the three members, which will greatly aid in the organization of the project's many tasks.
+---
 
-### Organization
+### Authors ✍️
 
-We will be working in a team of 3 people, with a project manager, a creative director, and a lead developer.
+- **Project Manager**: [svasim1](https://github.com/svasim1)  
+- **Creative Director**: [abbaxeros](https://github.com/abbaxeros)  
+- **Lead Developer**: [abb-filgal](https://github.com/abb-filgal)  
 
-- Project Manager: [svasim1](https://github.com/svasim1)
-  - Ensures that the team follows every necessity of the kanban board while realizing the vision of the final product
-- Creative Director: [abbaxeros](https://github.com/abbaxeros)
-  - Leads the creation of aesthetic and visual pieces as well as producing the mainframe for the game's artistic trajectory
-- Lead Developer: [abb-filgal](https://github.com/abb-filgal)
-  - Oversees the majority of backend programming, laying the foundation for the very core of our product
+---
+
+### How to Play 🎮
+
+Ready to roll the dice? [Download the game](https://github.com/Abb-FilGal/dicy-situation/releases), unzip and dive into the action!
+
+---

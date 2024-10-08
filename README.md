@@ -19,6 +19,8 @@
 ### Background 📚
 
 Welcome to **Dicey Situation**, a fast-paced Tower Defense game that blends dice mechanics with unpredictable RNG chaos. The F.E.E. Team proudly presents a unique experience where strategy meets randomness, keeping players on the edge of their seats!
+<br>
+You can watch the trailer [here](https://youtu.be/6IGbD3sNQyI).
 
 ---
 
